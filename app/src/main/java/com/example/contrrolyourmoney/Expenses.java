@@ -120,6 +120,7 @@ public class Expenses {
         }
         return  getExpense;
     }
+
     public ArrayList<Expenses> listExpenseByMonth(int month){
         ArrayList<Expenses> list = new ArrayList<>();
         for(Expenses expenses : allExpense){
