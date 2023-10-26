@@ -3,4 +3,16 @@
     <string name="cym">CYM</string>
     <string name="control_your_money">Control your Money</string>
     <string name="devlopped_by_lahcen">Devlopped by LAHCEN</string>
+    <string name="title">Control Your Money</string>
+    <string name="get_started">Next</string>
+    <string name="username">Username…</string>
+    <string name="networth">2500</string>
+    <string name="commision_type">Commission Type</string>
+    <string name="finsih">Finsih</string>
+    <string name="home">Home</string>
+    <string name="list">List</string>
+    <string name="settings">Settings</string>
+    <string name="search">Search</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

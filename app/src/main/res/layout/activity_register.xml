@@ -1,9 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Register">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/img_info"
+        android:alpha="0.3"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/usernameParent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="90dp"
+        android:background="@drawable/custom_edittext"
+        android:padding="10dp"
+        >
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:hint="@string/username"
+            android:textSize="20sp"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:inputType="text"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/netWorthParent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_edittext"
+        android:padding="10dp"
+        android:layout_below="@id/usernameParent"
+        >
+        <EditText
+            android:id="@+id/netMonth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:hint="@string/networth"
+            android:textSize="20sp"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:inputType="number"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/commisionParent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="30dp"
+        android:padding="10dp"
+        android:layout_below="@id/netWorthParent"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/commision_type"
+            android:textColor="@color/black"
+            android:fontFamily="@font/baloo"
+            android:textSize="20sp"
+            android:layout_marginEnd="20dp"/>
+       <Spinner
+           android:id="@+id/commisionList"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginEnd="20dp"
+           android:layout_marginStart="20dp"/>
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/finishBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp"
+        android:text="@string/finsih"
+        android:background="@drawable/custom_button"
+        android:textSize="25sp"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/baloo"
+        android:paddingStart="25dp"
+        android:paddingEnd="25dp"
+        />
+</RelativeLayout>
