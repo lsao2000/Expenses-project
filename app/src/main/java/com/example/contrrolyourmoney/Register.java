@@ -29,7 +29,7 @@ public class Register extends AppCompatActivity {
         netMonth = findViewById(R.id.netMonth);
         commision = findViewById(R.id.commisionList);
         finish = findViewById(R.id.finishBtn);
-        ArrayAdapter newArrayAdapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, commisionType);
+        ArrayAdapter<String> newArrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, commisionType);
         commision.setAdapter(newArrayAdapter);
         commision.setSelection(0);
         finish.setOnClickListener(new View.OnClickListener(){

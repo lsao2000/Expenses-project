@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/nameProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Product"
+        android:textSize="15sp"
+        android:fontFamily="@font/baloo"
+        android:textColor="@color/black"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"/>
+    <TextView
+        android:id="@+id/dateProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="02/07/2023"
+        android:layout_below="@id/nameProduct"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="-5dp"
+        android:textSize="8sp"
+        android:textColor="#939090"
+        android:fontFamily="@font/baloo"
+        tools:ignore="SmallSp" />
+    <TextView
+        android:id="@+id/priceProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#8DFF0026"
+        android:text="-58.59"
+        android:fontFamily="@font/baloo"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"/>
+
+
+</RelativeLayout>

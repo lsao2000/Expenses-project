@@ -1,16 +1,20 @@
 package com.example.contrrolyourmoney;
+import android.os.Build;
+
+import androidx.annotation.NonNull;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.time.LocalTime;
 public class Expenses {
     private Float expense;
     private Float moneyOfMonth;
     private String note;
     private LocalDate date;
-    private static ArrayList<Expenses> allExpense;
-    private ArrayList<Float> allDayExpenses;
-
-
-
+    private static LocalTime time ;
+    public static ArrayList<Expenses> allExpense = new ArrayList<>();
+    private ArrayList<Float> allDayExpenses = new ArrayList<>();
+    private ArrayList<LocalTime> allTimeExpenses = new ArrayList<>();
 
     Expenses(){
 
@@ -21,6 +25,21 @@ public class Expenses {
     Expenses(float expense, String note){
         this.expense = expense;
         this.note = note;
+        if(allTimeExpenses.isEmpty()){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                time = LocalTime.now();
+            }
+            allTimeExpenses.add(time);
+            allDayExpenses.add(expense);
+        }
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 
     public ArrayList<Float> getAllDayExpenses() {
@@ -80,6 +99,14 @@ public class Expenses {
         return date;
     }
 
+    public ArrayList<LocalTime> getallTimeExpenses() {
+        return allTimeExpenses;
+    }
+
+    public void setallTimeExpenses(ArrayList<LocalTime> allTimeExpenses) {
+        this.allTimeExpenses = allTimeExpenses;
+    }
+
     public void setDate(LocalDate today) {
         this.date = today;
     }
@@ -91,7 +118,7 @@ public class Expenses {
     public void setAllExpense(ArrayList<Expenses> allExpense) {
         Expenses.allExpense = allExpense;
     }
-    public void addExpense(Expenses newExpense){
+    public static void addExpense(Expenses newExpense){
         boolean allowAddExpense = true;
         int newday = Integer.parseInt(String.valueOf(newExpense.getDate()).split("\\-")[2]);
         int newMonth = Integer.parseInt(String.valueOf(newExpense.getDate()).split("\\-")[1]);
@@ -102,9 +129,13 @@ public class Expenses {
             int year = Integer.parseInt(String.valueOf(expenses.getDate()).split("\\-")[0]);
             if(day == newday && month == newMonth && year == newYear){
                 expenses.getAllDayExpenses().add(newExpense.expense);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    time = LocalTime.now();
+                }
+                expenses.getallTimeExpenses().add(newExpense.getTime());
+                expenses.allDayExpenses.add(newExpense.expense);
                 allowAddExpense = false;
                 break;
-
             }
         }
         if(allowAddExpense){
@@ -132,5 +163,9 @@ public class Expenses {
         return list;
     }
 
-
+    @NonNull
+    @Override
+    public String toString() {
+        return "Price : "+expense +" Product : "+note+ " Date : "+ date;
+    }
 }
