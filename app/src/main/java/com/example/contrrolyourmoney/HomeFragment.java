@@ -43,7 +43,7 @@ public class HomeFragment extends Fragment {
                     expense1.setDate(LocalDate.now());
                 }
                 Expenses.addExpense(expense1);
-                Toast.makeText(getContext(), Expenses.allExpense.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "the expense was added", Toast.LENGTH_LONG).show();
             }
         });
         return view;
