@@ -49,21 +49,29 @@ public class SearchFragment extends Fragment {
                 String inputValue = searchInput.getText().toString();
                 LocalDate date = null;
                 if(typesearch.equals("Day")){
+                    Expenses searchValue = null;
                     try{
                         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                            date = LocalDate.parse(inputValue);
+                            try{
+                                date = LocalDate.parse(inputValue);
+                            }catch(Exception e){
+                                searchInput.setError("The format date is invalid");
+                            }
                         }
-                        Expenses searchValue = Expenses.searchdate(date);
-                        recyclerView.setAdapter(new MyAdapter(getActivity(), searchValue.getAllExpense(),R.layout.list_date));
+                        searchValue = Expenses.searchdate(date);
+                        if(searchValue != null){
+                            recyclerView.setAdapter(new MyAdapter(getActivity(), searchValue.getAllExpense(),R.layout.list_date));
+                        }else{
+                            Toast.makeText(getContext(), "There is no expense in this day", Toast.LENGTH_LONG).show();
+                        }
                     }catch (Exception e){
-                        Toast.makeText(getContext(), "The search type is day : "+inputValue, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "The search type is day : "+searchValue, Toast.LENGTH_LONG).show();
                         searchInput.setError("must be date format Ex: 2023-01-15 ");
                     }
                 }else{
                     try{
                         final ArrayList<Expenses> searchdate = Expenses.searchdate(Integer.parseInt(inputValue));
                         recyclerView.setAdapter(new MyAdapter(getActivity(), searchdate,R.layout.list_date));
-
                     }catch (Exception e){
                         Toast.makeText(getContext(), "The search type is month : "+inputValue, Toast.LENGTH_LONG).show();
                         searchInput.setError("This must be integer not a string or date format");

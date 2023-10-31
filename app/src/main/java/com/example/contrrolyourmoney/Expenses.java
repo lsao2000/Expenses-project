@@ -152,9 +152,14 @@ public class Expenses {
     }
     public static Expenses searchdate(LocalDate date1){
         Expenses getExpense = null;
-        ArrayList<Expenses> expensesArrayList = new ArrayList<>();
+        int year = Integer.parseInt(String.valueOf(date1).split("\\-")[0]);
+        int month = Integer.parseInt(String.valueOf(date1).split("\\-")[1]);
+        int day = Integer.parseInt(String.valueOf(date1).split("\\-")[2]);
         for (Expenses expenses :allExpense){
-            if(expenses.equals(date1)){
+            int yearExpense = Integer.parseInt(String.valueOf(expenses.getDate()).split("\\-")[0]);
+            int monthExpense = Integer.parseInt(String.valueOf(expenses.getDate()).split("\\-")[1]);
+            int dayExpense = Integer.parseInt(String.valueOf(expenses.getDate()).split("\\-")[2]);
+            if(year == yearExpense & month == monthExpense & day == dayExpense){
                 getExpense = expenses;
             }
         }

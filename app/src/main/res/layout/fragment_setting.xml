@@ -1,14 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SettingFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+   <TextView
+       android:id="@+id/greeting"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Hi username"
+       android:fontFamily="@font/baloo"
+       android:textSize="20sp"
+       android:textColor="@color/black"
+       android:layout_alignParentStart="true"
+       android:layout_alignParentTop="true"
+       android:layout_marginStart="10dp"
+       />
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/greeting"
+        android:text="@string/have_a_nice_day"
+        android:layout_alignParentStart="true"
+        android:fontFamily="@font/baloo"
+        android:textSize="15sp"
+        android:textColor="#809A9999"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="-6dp"/>
+    <View
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edit_icon"/>
+</RelativeLayout>
