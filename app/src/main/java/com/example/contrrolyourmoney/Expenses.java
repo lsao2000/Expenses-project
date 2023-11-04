@@ -1,8 +1,14 @@
 package com.example.contrrolyourmoney;
+import android.content.Context;
 import android.os.Build;
+import android.widget.Toast;
 
+import java.util.Arrays;
+import java.util.Scanner;
 import androidx.annotation.NonNull;
-
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.time.LocalTime;
@@ -14,7 +20,9 @@ public class Expenses {
     private LocalTime hour;
     private static LocalTime time ;
     private String timeText;
-
+    private static File file;
+    private static Scanner content;
+    private FileOutputStream reader;
     public String getTimeText() {
         return timeText;
     }
@@ -43,7 +51,7 @@ public class Expenses {
         setTime(hour);
     }
 
-    public LocalTime getTime() {
+    public LocalTime getTime() {		
         return time;
     }
 
@@ -149,6 +157,48 @@ public class Expenses {
             allExpense.add(newExpense);
             newExpense.allDayExpenses.add(newExpense);
         }
+    }
+    
+    public static void getAllExpense(Context context){
+    	allExpense = new ArrayList<Expenses>();
+	content = null;
+	try {
+		
+		file = new File(context.getFilesDir(), "data.csv");
+		content =new  Scanner(file);
+		
+		
+	}catch(Exception e){
+		  Toast.makeText(context,"There is an error to access data", Toast.LENGTH_LONG).show();
+	}
+	content.nextLine();
+	content.nextLine();
+	while(content.hasNextLine()){
+		String line = Arrays.toString(content.nextLine().split("\\,"));
+        Toast.makeText(context, line, Toast.LENGTH_LONG).show();
+					
+	}
+	
+	//	int length =(int) file.length();
+	//	byte[] bytes = new bytes[length];
+	//	FileInputStream fIS = new FileInputStream(file);
+	//try(
+	//	fIS.read(bytes);
+	  // )finally{
+	//fIS.close();
+	//	String content = new String(bytes);
+	//	StringTokenizer sTZ = new StringTokenizer(content, "\n");
+	    //    sTZ.nextToken();	
+	  //      sTZ.nextToken();	
+	//	while(sTZ.hasMoreTokens()){
+			//ligne = STZ.nextToken();
+			//StringTokenizer st = new StringTokenizer(ligne,",");
+			//int expense = Integer.parseInt(st.nextToken().toString());
+			
+	//	}
+    
+
+
     }
     public static Expenses searchdate(LocalDate date1){
         Expenses getExpense = null;
