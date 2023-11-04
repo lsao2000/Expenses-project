@@ -3,7 +3,6 @@ import android.content.Context;
 import android.os.Build;
 import android.widget.Toast;
 
-import java.util.Arrays;
 import java.util.Scanner;
 import androidx.annotation.NonNull;
 import java.io.File;
@@ -135,49 +134,59 @@ public class Expenses {
     public void setAllExpense(ArrayList<Expenses> allExpense) {
         Expenses.allExpense = allExpense;
     }
-    public static void addExpense(Expenses newExpense){
-        newExpense.setTimeText(String.valueOf(time));
-        boolean allowAddExpense = true;
-        int newday = Integer.parseInt(String.valueOf(newExpense.getDate()).split("\\-")[2]);
-        int newMonth = Integer.parseInt(String.valueOf(newExpense.getDate()).split("\\-")[1]);
-        int newYear = Integer.parseInt(String.valueOf(newExpense.getDate()).split("\\-")[0]);
-        if(allExpense.size() > 0) {
-            for (Expenses expenses : allExpense) {
-                int day = Integer.parseInt(String.valueOf(expenses.getDate()).split("\\-")[2]);
-                int month = Integer.parseInt(String.valueOf(expenses.getDate()).split("\\-")[1]);
-                int year = Integer.parseInt(String.valueOf(expenses.getDate()).split("\\-")[0]);
-                if (day == newday && month == newMonth && year == newYear) {
-                    expenses.allDayExpenses.add(newExpense);
-                    allowAddExpense = false;
-                    break;
-                }
-            }
-        }
-        if(allowAddExpense){
-            allExpense.add(newExpense);
-            newExpense.allDayExpenses.add(newExpense);
-        }
-    }
-    
-    public static void getAllExpense(Context context){
-    	allExpense = new ArrayList<Expenses>();
-	content = null;
-	try {
-		
+        public static void addExpense(Context context){
+    	    allExpense = new ArrayList<Expenses>();
+	        content = null;
+	    try {
 		file = new File(context.getFilesDir(), "data.csv");
 		content =new  Scanner(file);
-		
-		
 	}catch(Exception e){
 		  Toast.makeText(context,"There is an error to access data", Toast.LENGTH_LONG).show();
 	}
 	content.nextLine();
 	content.nextLine();
 	while(content.hasNextLine()){
-		String line = Arrays.toString(content.nextLine().split("\\,"));
-        Toast.makeText(context, line, Toast.LENGTH_LONG).show();
-					
-	}
+		String[] line = content.nextLine().split("\\,");
+		
+		// get the time of the product
+		int hour = Integer.parseInt(line[3].split("\\:")[0]);
+		int minute = (int) Float.parseFloat(line[3].split("\\:")[1]);
+		int second = Integer.parseInt(line[3].split("\\:")[2]);
+		// get the date of the product
+		int year = Integer.parseInt(line[2].split("\\-")[0]);
+		int month = Integer.parseInt(line[2].split("\\-")[1]);
+		int day = Integer.parseInt(line[2].split("\\-")[2]);
+        Expenses newExpense = new Expenses((int) Float.parseFloat(line[0]),line[1]);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            newExpense.setTime(LocalTime.of(hour,minute,second));
+            newExpense.setDate(LocalDate.of(year,month,day));
+        }
+        boolean allowAddExpense = true;
+		if(allExpense.size() > 0) {
+           		for (Expenses expenses : allExpense) {
+                		int dayOldExpense = Integer.parseInt(String.valueOf(expenses.getDate()).split("\\-")[2]);
+                		int monthOldExpense = Integer.parseInt(String.valueOf(expenses.getDate()).split("\\-")[1]);
+                		int yearOldExpense = Integer.parseInt(String.valueOf(expenses.getDate()).split("\\-")[0]);
+                		if (day == dayOldExpense && month == monthOldExpense && year == yearOldExpense) {
+                    			expenses.allDayExpenses.add(newExpense);
+                    			allowAddExpense = false;
+                    			break;
+                		}
+            		}
+       		}
+        if(allowAddExpense){
+                allExpense.add(newExpense);
+                newExpense.allDayExpenses.add(newExpense);
+        }
+	    }
+    	}
+        //newExpense.setTimeText(String.valueOf(time));
+        // boolean allowAddExpense = true;
+       // int newday = Integer.parseInt(String.valueOf(newExpense.getDate()).split("\\-")[2]);
+       // int newMonth = Integer.parseInt(String.valueOf(newExpense.getDate()).split("\\-")[1]);
+       // int newYear = Integer.parseInt(String.valueOf(newExpense.getDate()).split("\\-")[0]);
+    
+    //public static void getAllExpense(){
 	
 	//	int length =(int) file.length();
 	//	byte[] bytes = new bytes[length];
@@ -199,7 +208,7 @@ public class Expenses {
     
 
 
-    }
+    //}
     public static Expenses searchdate(LocalDate date1){
         Expenses getExpense = null;
         int year = Integer.parseInt(String.valueOf(date1).split("\\-")[0]);

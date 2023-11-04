@@ -40,7 +40,7 @@ public class HomeFragment extends Fragment {
         price = view.findViewById(R.id.price);
         productName = view.findViewById(R.id.product);
         addBtn = view.findViewById(R.id.addExpense);
-        Expenses.getAllExpense(getContext());
+        Expenses.addExpense(getContext());    ;
 	addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +63,7 @@ public class HomeFragment extends Fragment {
 			writer = new FileOutputStream(file, true);
 			writer.write(line.getBytes());
 			writer.close();
+            Expenses.addExpense(getContext());
 		}catch(Exception e){
 			Toast.makeText(getContext(), "There is an error with add data", Toast.LENGTH_LONG);
 			}
