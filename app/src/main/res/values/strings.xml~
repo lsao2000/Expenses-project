@@ -13,9 +13,6 @@
     <string name="list">List</string>
     <string name="settings">Settings</string>
     <string name="search">Search</string>
-    <string name="darktheme">Dark Theme</string>
-    <string name="notification">Notification</string>
-    
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="have_a_nice_day">have a nice day</string>

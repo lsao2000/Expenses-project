@@ -17,7 +17,8 @@
        android:layout_marginStart="10dp"
        />
     <TextView
-        android:layout_width="wrap_content"
+	android:id="@+id/netMonth"    
+	android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/greeting"
         android:text="@string/have_a_nice_day"
@@ -34,5 +35,58 @@
         android:layout_alignParentTop="true"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/edit_icon"/>
+	android:background="@drawable/edit_icon"/>
+    <LinearLayout 
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:layout_below="@+id/netMonth"
+	android:layout_marginTop="20dp">
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:padding="10dp"
+		android:paddingStart="20dp"
+		android:paddingEnd="20dp"
+		>
+		<TextView 
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/notification"
+			android:textStyle="bold"
+			android:fontFamly="@font/baloo"
+			android:textSize="20sp"
+			android:textColor="@color/black"
+			/>
+		<Switch
+			android:id="@+id/notification"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			/>
+	</LinearLayout>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:padding="10dp"
+		android:paddingStart="20dp"
+		android:paddingEnd="20dp"
+		>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/darktheme"
+			android:textColor="@color/black"
+			android:textStyle="bold"
+			android:fontFamily="@font/baloo"
+			/>
+		<Switch
+			android:id="@+id/darktheme"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			/>
+	</LinearLayout>
+    </LinearLayout>
+
 </RelativeLayout>
